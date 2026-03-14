@@ -48,6 +48,17 @@ export default function App() {
                   </NavLink>
                 ))}
               </div>
+              <div className="ml-auto shrink-0">
+                <a
+                  href="http://localhost:8000/docs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-primary-600/20 text-primary-300 hover:bg-primary-600/30 transition-all"
+                >
+                  <span>📖</span>
+                  <span className="hidden sm:inline">API Docs</span>
+                </a>
+              </div>
             </div>
           </div>
         </nav>

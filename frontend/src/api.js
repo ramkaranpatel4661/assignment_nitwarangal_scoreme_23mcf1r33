@@ -53,3 +53,9 @@ export async function getDecisionExplanation(requestId) {
   return res.json();
 }
 
+export async function getActiveRules() {
+  const res = await fetch(`${API_BASE}/workflow/rules`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+

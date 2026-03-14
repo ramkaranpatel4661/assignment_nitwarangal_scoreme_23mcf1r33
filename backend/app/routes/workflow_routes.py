@@ -71,6 +71,17 @@ def get_request_detail(request_id: str):
     return RequestDetailResponse(**result)
 
 
+@router.get("/workflow/rules")
+def get_active_rules():
+    """Return the active rules configuration."""
+    import json
+    import os
+    rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config", "rules.json")
+    with open(rules_path, "r") as f:
+        rules = json.load(f)
+    return rules
+
+
 @router.get("/health", response_model=HealthResponse)
 def health_check():
     """Health check endpoint."""
