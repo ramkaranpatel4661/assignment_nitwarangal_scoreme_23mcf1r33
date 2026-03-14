@@ -40,6 +40,8 @@ A **configurable, extensible workflow decision engine** that processes incoming 
 
 ## Table of Contents
 
+> 📄 **[Architecture Document (ARCHITECTURE.md)](ARCHITECTURE.md)** — Detailed system design, data flow, component interactions, trade-offs, and scaling roadmap
+
 - [Problem Overview](#problem-overview)
 - [System Architecture](#system-architecture)
 - [Core Components](#core-components)
