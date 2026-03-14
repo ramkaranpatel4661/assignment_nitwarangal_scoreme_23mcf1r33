@@ -126,28 +126,34 @@ export default function SubmitRequest() {
         </div>
 
         {/* Documents Verified */}
-        <div className="flex items-center gap-3 py-2">
-          <div className="relative">
-            <input
-              name="documents_verified"
-              type="checkbox"
-              checked={form.documents_verified}
-              onChange={handleChange}
-              className="sr-only peer"
-              id="input-documents-verified"
-            />
-            <label
-              htmlFor="input-documents-verified"
-              className="w-11 h-6 bg-surface-700 rounded-full cursor-pointer
-                         peer-checked:bg-primary-600 after:content-[''] after:absolute
-                         after:top-0.5 after:left-0.5 after:bg-white after:rounded-full
-                         after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5
-                         transition-all"
-            />
+        <div>
+          <label className="block text-sm font-medium text-surface-300 mb-2">Documents Verified</label>
+          <div className="flex gap-3" id="input-documents-verified">
+            <button
+              type="button"
+              onClick={() => setForm(prev => ({ ...prev, documents_verified: true }))}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm transition-all duration-200 ${
+                form.documents_verified
+                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 ring-2 ring-emerald-400'
+                  : 'bg-surface-800 text-surface-400 hover:bg-surface-700 border border-surface-700'
+              }`}
+            >
+              <span className="text-lg">{form.documents_verified ? '✅' : '☑️'}</span>
+              Yes — Verified
+            </button>
+            <button
+              type="button"
+              onClick={() => setForm(prev => ({ ...prev, documents_verified: false }))}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-medium text-sm transition-all duration-200 ${
+                !form.documents_verified
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/25 ring-2 ring-red-400'
+                  : 'bg-surface-800 text-surface-400 hover:bg-surface-700 border border-surface-700'
+              }`}
+            >
+              <span className="text-lg">{!form.documents_verified ? '❌' : '⬜'}</span>
+              No — Not Verified
+            </button>
           </div>
-          <label htmlFor="input-documents-verified" className="text-sm text-surface-300 cursor-pointer">
-            Documents Verified
-          </label>
         </div>
 
         {/* Error */}
