@@ -25,6 +25,19 @@ A **configurable, extensible workflow decision engine** that processes incoming 
 
 ---
 
+### UI Preview
+
+<p align="center">
+  <img src="assets/Screenshot%202026-03-14%20171230.png" width="48%" />
+  <img src="assets/Screenshot%202026-03-14%20171350.png" width="48%" />
+</p>
+
+<p align="center">
+  <a href="#screenshots"><strong>👉 View All Screenshots</strong></a>
+</p>
+
+---
+
 ## Table of Contents
 
 - [Problem Overview](#problem-overview)
@@ -454,7 +467,11 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 | **Audit Logs** | Searchable, paginated audit table with decision badges |
 | **Status Timeline** | Visual state transition timeline for any request |
 
-### Screenshots
+<h3 id="screenshots">Screenshots</h3>
+
+<details>
+<summary><strong>👉 View All Screenshots (click to expand)</strong></summary>
+<br>
 
 #### Dashboard — System Health, Statistics & Analytics
 ![Dashboard](assets/Screenshot%202026-03-14%20171230.png)
@@ -479,6 +496,8 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 
 #### Swagger API Docs — Schemas
 ![API Schemas](assets/Screenshot%202026-03-14%20171425.png)
+
+</details>
 
 
 ---
