@@ -522,7 +522,7 @@ frontend/
 
 ## Author
 
-**Ram Karan Patel**
+**Ramkaran Patel**
 NIT Warangal | 23MCF1R33
 
 ---
