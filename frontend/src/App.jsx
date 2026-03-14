@@ -53,7 +53,7 @@ export default function App() {
                   href="http://localhost:8000/docs"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-primary-600/20 text-primary-300 hover:bg-primary-600/30 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-primary-600 to-violet-600 text-white hover:from-primary-500 hover:to-violet-500 shadow-lg shadow-primary-500/30 transition-all hover:shadow-primary-500/50 hover:scale-105"
                 >
                   <span>📖</span>
                   <span className="hidden sm:inline">API Docs</span>
