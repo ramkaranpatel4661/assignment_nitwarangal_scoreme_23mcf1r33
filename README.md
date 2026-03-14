@@ -454,6 +454,24 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 | **Audit Logs** | Searchable, paginated audit table with decision badges |
 | **Status Timeline** | Visual state transition timeline for any request |
 
+### Screenshots
+
+#### Dashboard
+![Dashboard](assets/dashboard.png)
+
+#### Submit Request
+![Submit Request](assets/submit_request.png)
+
+#### Workflow Result
+![Workflow Result](assets/workflow_result.png)
+
+#### Audit Logs
+![Audit Logs](assets/audit_logs.png)
+
+#### Status Timeline
+![Status Timeline](assets/timeline.png)
+
+
 ---
 
 ## Scaling Considerations
