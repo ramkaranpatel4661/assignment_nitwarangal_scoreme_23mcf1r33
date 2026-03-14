@@ -1,0 +1,28 @@
+{
+  "rules": [
+    {
+      "field": "credit_score",
+      "operator": ">=",
+      "value": 700,
+      "decision": "APPROVE"
+    },
+    {
+      "field": "credit_score",
+      "operator": "<",
+      "value": 500,
+      "decision": "REJECT"
+    },
+    {
+      "field": "documents_verified",
+      "operator": "==",
+      "value": false,
+      "decision": "MANUAL_REVIEW"
+    },
+    {
+      "field": "income",
+      "operator": "<",
+      "value": 20000,
+      "decision": "REJECT"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply transition-colors duration-200; }
+  body { @apply bg-surface-950 text-surface-50 font-sans; }
+}
+
+@layer components {
+  .card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(51, 65, 85, 0.4);
+    @apply rounded-2xl p-6 shadow-lg;
+  }
+  .card-hover {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(51, 65, 85, 0.4);
+    @apply rounded-2xl p-6 shadow-lg transition-all;
+  }
+  .card-hover:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400
+           text-white font-semibold py-2.5 px-6 rounded-xl shadow-lg
+           active:scale-95 transition-all duration-200;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+  }
+  .btn-secondary {
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    @apply bg-surface-800 hover:bg-surface-700 text-surface-200 font-medium py-2.5 px-6 rounded-xl
+           active:scale-95 transition-all duration-200;
+  }
+  .input-field {
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    @apply bg-surface-800 rounded-xl px-4 py-3 text-surface-100
+           placeholder-surface-200 focus:outline-none focus:ring-2 focus:ring-primary-500
+           w-full transition-all;
+  }
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
+  }
+  .badge-approve {
+    @apply badge text-emerald-400;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  .badge-reject {
+    @apply badge text-red-400;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+  .badge-review {
+    @apply badge text-amber-400;
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  .badge-pending {
+    @apply badge text-sky-400;
+    background: rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+  }
+  .badge-processing {
+    @apply badge text-violet-400;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* Animated gradient bg */
+.gradient-mesh {
+  background: radial-gradient(at 20% 80%, rgba(99,102,241,0.15) 0%, transparent 50%),
+              radial-gradient(at 80% 20%, rgba(139,92,246,0.1) 0%, transparent 50%),
+              radial-gradient(at 50% 50%, rgba(79,70,229,0.05) 0%, transparent 70%);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

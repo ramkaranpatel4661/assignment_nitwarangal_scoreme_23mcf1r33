@@ -1,0 +1,9 @@
+{
+  "stages": [
+    "validation",
+    "document_verification",
+    "rule_evaluation",
+    "decision",
+    "audit_logging"
+  ]
+}
