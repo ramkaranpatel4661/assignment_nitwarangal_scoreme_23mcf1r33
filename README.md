@@ -18,25 +18,26 @@ A **configurable, extensible workflow decision engine** that processes incoming 
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Problem Overview](#-problem-overview)
-- [System Architecture](#-system-architecture)
-- [Core Components](#-core-components)
-- [Configuration Model](#-configuration-model)
-- [API Endpoints](#-api-endpoints)
-- [Explainability & Auditability](#-explainability--auditability)
-- [Engineering Robustness](#-engineering-robustness)
-- [Testing](#-testing)
-- [Running the Project](#-running-the-project)
-- [Frontend UI](#-frontend-ui)
-- [Scaling Considerations](#-scaling-considerations)
-- [Trade-offs](#-trade-offs)
-- [Author](#-author)
+- [Problem Overview](#problem-overview)
+- [System Architecture](#system-architecture)
+- [Core Components](#core-components)
+- [Configuration Model](#configuration-model)
+- [API Endpoints](#api-endpoints)
+- [Explainability & Auditability](#explainability--auditability)
+- [Engineering Robustness](#engineering-robustness)
+- [Testing](#testing)
+- [Running the Project](#running-the-project)
+- [Frontend UI](#frontend-ui)
+- [Scaling Considerations](#scaling-considerations)
+- [Trade-offs](#trade-offs)
+- [Project Structure](#project-structure)
+- [Author](#author)
 
 ---
 
-## 🧩 Problem Overview
+## Problem Overview
 
 Enterprise workflows — from loan approvals to employee onboarding — are often built with **hardcoded business logic** that is difficult to modify, audit, or explain. When rules change, developers must rewrite and redeploy code.
 
@@ -58,7 +59,7 @@ Enterprise workflows — from loan approvals to employee onboarding — are ofte
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -104,7 +105,7 @@ Enterprise workflows — from loan approvals to employee onboarding — are ofte
 
 ---
 
-## 🔧 Core Components
+## Core Components
 
 | Component | File | Responsibility |
 |---|---|---|
@@ -130,7 +131,7 @@ Each layer has a single responsibility. Services are stateless and unit-testable
 
 ---
 
-## ⚙️ Configuration Model
+## Configuration Model
 
 ### Rules Configuration — `config/rules.json`
 
@@ -196,7 +197,7 @@ The pipeline stages are fully configurable. Reorder, add, or remove stages witho
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -292,7 +293,7 @@ The pipeline stages are fully configurable. Reorder, add, or remove stages witho
 
 ---
 
-## 🔍 Explainability & Auditability
+## Explainability & Auditability
 
 ### Decision Explanation
 
@@ -337,7 +338,7 @@ PENDING → PROCESSING → REJECTED        (when credit_score < 500)
 
 ---
 
-## 🛡️ Engineering Robustness
+## Engineering Robustness
 
 ### Retry Mechanism
 ```
@@ -381,7 +382,7 @@ VALID_TRANSITIONS = {
 
 ---
 
-## 🧪 Testing
+## Testing
 
 **Framework:** Pytest with `TestClient` (synchronous FastAPI testing)
 
@@ -406,7 +407,7 @@ python -m pytest tests/ -v
 
 ---
 
-## 🚀 Running the Project
+## Running the Project
 
 ### Prerequisites
 - Python 3.10+
@@ -434,7 +435,7 @@ npm run dev
 
 ---
 
-## 🖥️ Frontend UI
+## Frontend UI
 
 Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 
@@ -448,7 +449,7 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 
 ---
 
-## 📈 Scaling Considerations
+## Scaling Considerations
 
 | Current | Production Scale |
 |---------|-----------------|
@@ -462,7 +463,7 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 
 ---
 
-## ⚖️ Trade-offs
+## Trade-offs
 
 | Decision | Rationale |
 |----------|-----------|
@@ -474,7 +475,7 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 backend/
@@ -519,7 +520,7 @@ frontend/
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Ram Karan Patel**
 NIT Warangal | 23MCF1R33
