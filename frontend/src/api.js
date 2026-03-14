@@ -37,3 +37,19 @@ export async function healthCheck() {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
+
+export async function getWorkflowStats() {
+  const res = await fetch(`${API_BASE}/workflow/stats`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+export async function getDecisionExplanation(requestId) {
+  const res = await fetch(`${API_BASE}/workflow/decision/${requestId}`);
+  if (!res.ok) {
+    if (res.status === 404) return null;
+    throw new Error(`HTTP ${res.status}`);
+  }
+  return res.json();
+}
+

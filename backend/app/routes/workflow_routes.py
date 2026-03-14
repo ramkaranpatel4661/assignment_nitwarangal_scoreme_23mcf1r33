@@ -10,11 +10,15 @@ from app.models.request_model import (
     AuditLogResponse,
     RequestDetailResponse,
     HealthResponse,
+    DecisionExplanationResponse,
+    WorkflowStatsResponse,
 )
 from app.controllers.workflow_controller import (
     process_workflow,
     get_request_lifecycle,
     fetch_audit_logs,
+    get_decision_explanation,
+    get_workflow_stats,
 )
 
 router = APIRouter(prefix="/api", tags=["Workflow"])
@@ -40,6 +44,22 @@ def get_audit_logs(
     """Retrieve audit logs, optionally filtered by request_id."""
     result = fetch_audit_logs(request_id=request_id, limit=limit, offset=offset)
     return AuditLogResponse(**result)
+
+
+@router.get("/workflow/stats", response_model=WorkflowStatsResponse)
+def workflow_stats():
+    """Get aggregated workflow statistics."""
+    result = get_workflow_stats()
+    return WorkflowStatsResponse(**result)
+
+
+@router.get("/workflow/decision/{request_id}", response_model=DecisionExplanationResponse)
+def decision_explanation(request_id: str):
+    """Get structured explanation of the decision for a request."""
+    result = get_decision_explanation(request_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail=f"Request {request_id} not found")
+    return DecisionExplanationResponse(**result)
 
 
 @router.get("/workflow/request/{request_id}", response_model=RequestDetailResponse)

@@ -71,3 +71,24 @@ class HealthResponse(BaseModel):
     status: str
     version: str
     database: str
+
+
+class DecisionExplanationResponse(BaseModel):
+    """Structured explanation of a workflow decision."""
+    request_id: str
+    decision: Optional[str] = None
+    rules_triggered: List[str]
+    explanation: str
+    stages_executed: List[str]
+
+
+class WorkflowStatsResponse(BaseModel):
+    """Aggregated workflow statistics."""
+    total_requests: int
+    approved: int
+    rejected: int
+    manual_review: int
+    retry: int
+    pending: int
+    processing: int
+

@@ -12,6 +12,7 @@ from app.services.state_manager import transition_state, set_decision
 from app.services.audit_logger import log_event
 from app.services.retry_handler import execute_with_retry
 from app.services.external_service_simulator import verify_documents
+from app.utils.logger import logger
 
 CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config", "workflow_config.json")
 
@@ -27,23 +28,33 @@ def load_workflow_config(path: str = CONFIG_PATH) -> list:
 
 def _stage_validation(request_id: str, data: Dict[str, Any], context: Dict) -> Dict:
     """Validate request data."""
+    logger.info("Validation passed", extra={"request_id": request_id, "stage": "validation"})
     log_event(request_id, data, "validation", "Request validation passed")
     return {"validated": True}
 
 
 def _stage_document_verification(request_id: str, data: Dict[str, Any], context: Dict) -> Dict:
     """Call external document verification with retry."""
+    logger.info("Starting document verification", extra={"request_id": request_id, "stage": "document_verification"})
     success, result, attempts = execute_with_retry(
         verify_documents, request_id, data.get("documents_verified", False)
     )
 
     if not success:
+        logger.warning(
+            "Document verification service failed",
+            extra={"request_id": request_id, "stage": "document_verification", "retry_attempt": attempts, "error": str(result)}
+        )
         log_event(
             request_id, data, "document_verification",
             f"Document verification service failed after {attempts} attempts: {result}"
         )
         return {"doc_verification_success": False, "retry_attempts": attempts, "error": result}
 
+    logger.info(
+        "Document verification succeeded",
+        extra={"request_id": request_id, "stage": "document_verification", "retry_attempt": attempts}
+    )
     log_event(
         request_id, data, "document_verification",
         f"Document verification completed (attempt {attempts})"
@@ -55,6 +66,10 @@ def _stage_rule_evaluation(request_id: str, data: Dict[str, Any], context: Dict)
     """Evaluate rules against request data."""
     decision, triggered_rules = evaluate_rules(data)
 
+    logger.info(
+        "Rule evaluation complete",
+        extra={"request_id": request_id, "stage": "rule_evaluation", "decision": decision}
+    )
     log_event(
         request_id, data, "rule_evaluation",
         f"Rule evaluation complete. Decision: {decision}",
@@ -86,6 +101,10 @@ def _stage_decision(request_id: str, data: Dict[str, Any], context: Dict) -> Dic
     transition_state(request_id, target_state)
     set_decision(request_id, final_decision)
 
+    logger.info(
+        "Decision finalized",
+        extra={"request_id": request_id, "stage": "decision", "decision": final_decision}
+    )
     log_event(request_id, data, "decision", message, decision=final_decision)
     return {"final_decision": final_decision, "final_state": target_state}
 
@@ -120,12 +139,15 @@ def execute_workflow(request_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
     stages = load_workflow_config()
     context: Dict[str, Any] = {}
 
+    logger.info("Workflow started", extra={"request_id": request_id})
+
     # Transition to PROCESSING
     transition_state(request_id, "PROCESSING")
 
     for stage_name in stages:
         handler = STAGE_HANDLERS.get(stage_name)
         if handler is None:
+            logger.warning(f"Unknown stage: {stage_name}", extra={"request_id": request_id})
             log_event(request_id, data, stage_name, f"Unknown stage: {stage_name}")
             continue
 
@@ -133,6 +155,10 @@ def execute_workflow(request_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
             result = handler(request_id, data, context)
             context.update(result)
         except Exception as e:
+            logger.error(
+                f"Stage '{stage_name}' failed: {str(e)}",
+                extra={"request_id": request_id, "stage": stage_name, "error": str(e)}
+            )
             log_event(request_id, data, stage_name, f"Stage failed: {str(e)}")
             transition_state(request_id, "MANUAL_REVIEW")
             set_decision(request_id, "MANUAL_REVIEW")
@@ -141,4 +167,5 @@ def execute_workflow(request_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
             context["error"] = str(e)
             break
 
+    logger.info("Workflow finished", extra={"request_id": request_id, "decision": context.get("final_decision")})
     return context
