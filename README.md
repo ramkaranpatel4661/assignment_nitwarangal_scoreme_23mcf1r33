@@ -456,20 +456,29 @@ Built with **React + Tailwind CSS** — dark theme with glassmorphism design.
 
 ### Screenshots
 
-#### Dashboard
-![Dashboard](assets/dashboard.png)
+#### Dashboard — System Health, Statistics & Analytics
+![Dashboard](assets/Screenshot%202026-03-14%20171230.png)
+
+#### Dashboard — Recent Activity, Active Rules & System Info
+![Dashboard Activity](assets/Screenshot%202026-03-14%20171313.png)
 
 #### Submit Request
-![Submit Request](assets/submit_request.png)
+![Submit Request](assets/Screenshot%202026-03-14%20171329.png)
 
 #### Workflow Result
-![Workflow Result](assets/workflow_result.png)
+![Workflow Result](assets/Screenshot%202026-03-14%20171336.png)
 
 #### Audit Logs
-![Audit Logs](assets/audit_logs.png)
+![Audit Logs](assets/Screenshot%202026-03-14%20171350.png)
 
 #### Status Timeline
-![Status Timeline](assets/timeline.png)
+![Status Timeline](assets/Screenshot%202026-03-14%20171402.png)
+
+#### Swagger API Docs — Endpoints
+![API Docs](assets/Screenshot%202026-03-14%20171418.png)
+
+#### Swagger API Docs — Schemas
+![API Schemas](assets/Screenshot%202026-03-14%20171425.png)
 
 
 ---
